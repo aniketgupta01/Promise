@@ -1,29 +1,45 @@
-let posts = [
-    {title:'Post one', body:'This is post one'},
-    {title:'Post two', body:'This is post two'}
+console.log('person 1 shows ticket')
+console.log('person 2 shows ticket')
 
-];
-
-function getPosts(){
-    setTimeout(()=>{
-        let output = '';
-        posts.forEach((post)=>{
-            output += `<li>${post.title}</li>`;
-        });
-        document.body.innerHTML=output;
-    },1000)
-}
-
-function createPost(post){
-    return new Promise((resolve, reject)=>{
-        setTimeout(()=>{
-            posts.push(post);
-            resolve();
-
-        },1000)
+const preMovie = async () => {
+    const promiseWifeBringingTickets = new Promise((resolve, reject)=>{
+        setTimeout(()=> resolve('ticket'),3000);
     })
 
-}
-    
+    const getPopcorn = new Promise((resolve, reject)=> resolve('popcorn'))
+    const getButter = new Promise((resolve, reject)=> resolve('butter'))
+    const getColdrink = new Promise((resolve, reject)=> resolve('Coldrink'))
 
-getPosts();
+
+
+    let ticket = await promiseWifeBringingTickets;
+    console.log(`wife : i have ${ticket} `)
+    console.log('husband : lets go in')
+    console.log('wife : no, i am hungry')
+
+    let popcorn = await getPopcorn;
+    console.log(`husband : i have ${popcorn}`)
+    console.log('husband : we should go in')
+    console.log('wife : no, i need butter on my popcorn')
+
+    let butter = await getButter;
+    console.log(`husband : i have ${butter}`)
+    console.log('husband : we should go in')
+    console.log('wife : no, i need cold drinks')
+
+    let coldrink = await getColdrink
+    console.log(`husband : i have ${coldrink}`)
+    console.log('husband : we should go in')
+    console.log("wife : yes, let's go in we are getting late")
+
+
+
+
+}
+     
+
+
+preMovie().then((msg)=> console.log(msg));
+
+console.log('person 4 shows ticket')
+console.log('person 5 shows ticket')
